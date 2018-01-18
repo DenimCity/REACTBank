@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-
+import {Link} from 'react-router-dom'
 export default class LogIn extends Component {
   
   state = {
@@ -41,6 +41,7 @@ export default class LogIn extends Component {
 
     return (
       <div>
+        <Link to="/">Home</Link>
         <form onSubmit={this.handleSubmit}>
           <div>
             <label htmlFor="userName">User Name</label>

@@ -13,6 +13,9 @@ return (
       <h1>User Profile</h1>
       <div>Username: {this.props.userName}</div>
       <div>Member Since: {this.props.memberSince}</div>
+      <div>
+            
+      </div>
       <Link to="/">Home</Link>
 </div>
 )}}
