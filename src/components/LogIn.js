@@ -42,6 +42,9 @@ export default class LogIn extends Component {
     return (
       <div>
         <Link to="/">Home</Link>
+        <div>
+          Welcome to User Login
+        </div>
         <form onSubmit={this.handleSubmit}>
           <div>
             <label htmlFor="userName">User Name</label>
