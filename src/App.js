@@ -55,8 +55,6 @@ const LogInComponent = () => (
   mockLogIn={this.mockLogIn} 
   {...this.props}/>)
 
-
-
     return (
         <Router>
           <Switch>
