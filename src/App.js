@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import Home from './components/Home'
 import UserProfile from './components/UserProfile'
 import LogIn from './components/LogIn'
+
 //we have installed the react browser using this CL npm i react-router-dom
 //and imported it into our App.js
 //we creaded a Home route
@@ -14,6 +15,11 @@ import LogIn from './components/LogIn'
 //we added the to the state of the data the current users
 // the name and date of inital membership
 
+//importing axios to organize a promie based library that makes API calls for REACT 
+import axios from 'axios'
+//this import is importing the Debits page and allows me to mount the debits page component
+import DebitsPage from './components/DebitsPage'
+
 
 
 
@@ -24,8 +30,17 @@ export default class App extends Component {
     currentUser: {
       userName: 'bob_loblaw',
       memberSince: '08/23/99',
-    }
+    },
+    debits:[],
   } 
+//
+  // getCredits = () => {
+  // axios.get('http://localhost:4000/credits')
+  // .then((ressponse)=> {
+  //   const credits = response.data
+  //   this.setState({credits})
+  // })
+  // }
   
 
   mockLogIn = (logInInfo) => {
@@ -34,6 +49,8 @@ export default class App extends Component {
     newUser.userName = logInInfo.userName
     this.setState({currentUser: newUser})
   }
+
+  
   
 
   render() {
@@ -56,11 +73,16 @@ const LogInComponent = () => (
   {...this.props}/>)
 
     return (
+      //Router, Switch and Route is apart of a library that you imported using npm i react-router-dom
         <Router>
+          ///Switch allows only one route to render at a time and easily switch bewtween
           <Switch>
+        //the routes declare the path the user will go to based o nthe path definiton
             <Route exact path="/" render={HomeComponent}/>
             <Route exact path="/userProfile" render={UserProfileComponent}/>
             <Route exact path="/login" render={LogInComponent}/>
+            <Route exact path= "debits" render={debitsPageComponent}/>
+            {/* <Route exact path= "credits" render={creditsPageComponent}/> */}
           </Switch>
         </Router>
     )
