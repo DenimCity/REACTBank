@@ -4,6 +4,7 @@ import Home from './components/Home'
 import UserProfile from './components/UserProfile'
 import LogIn from './components/LogIn'
 
+
 //we have installed the react browser using this CL npm i react-router-dom
 //and imported it into our App.js
 //we creaded a Home route
@@ -31,16 +32,25 @@ export default class App extends Component {
       userName: 'bob_loblaw',
       memberSince: '08/23/99',
     },
+    //here we are staging the debits information we are pulling in as empty array
     debits:[],
   } 
-//
-  // getCredits = () => {
-  // axios.get('http://localhost:4000/credits')
-  // .then((ressponse)=> {
-  //   const credits = response.data
-  //   this.setState({credits})
-  // })
-  // }
+//here we are usign axios to grap our data from an API
+  getDebits = () => {
+    //axios grabs the link
+    axios.get('http://localhost:4000/debits')
+    //and we are awaiting a response to be given
+    .then((response)=>{
+//the response of the data were are attaching it to the variable  'debits'
+      const debits = response.data
+      //now we are setting the state debits
+      this.setState({debits})
+      //but if we cannot grab that error we are going to print a error message in the console.
+    }).catch((erros)=> {
+      console.log('We didnt get the Debits Data')
+    })
+  }
+  
   
 
   mockLogIn = (logInInfo) => {
@@ -72,17 +82,21 @@ const LogInComponent = () => (
   mockLogIn={this.mockLogIn} 
   {...this.props}/>)
 
+  const DebitsPageComponent = () => (
+    <DebitsPage
+    debits={this.state.debits}/>
+  )
+
     return (
       //Router, Switch and Route is apart of a library that you imported using npm i react-router-dom
         <Router>
-          ///Switch allows only one route to render at a time and easily switch bewtween
+         {/* / //Switch allows only one route to render at a time and easily switch bewtween */}
           <Switch>
-        //the routes declare the path the user will go to based o nthe path definiton
+        {/* //the routes declare the path the user will go to based o nthe path definiton */}
             <Route exact path="/" render={HomeComponent}/>
             <Route exact path="/userProfile" render={UserProfileComponent}/>
             <Route exact path="/login" render={LogInComponent}/>
-            <Route exact path= "debits" render={debitsPageComponent}/>
-            {/* <Route exact path= "credits" render={creditsPageComponent}/> */}
+            <Route exact path="/debits" render={DebitsPageComponent}/>
           </Switch>
         </Router>
     )

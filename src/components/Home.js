@@ -19,9 +19,14 @@ export default class Home extends Component {
             <div>
               <img width="200px" src="https://letstalkpayments.com/wp-content/uploads/2016/04/Bank.png" alt="bank"/>
               <h1>Bank of React</h1>
-              <Link to="LogIn/"> Login in</Link>
+              
               <div>
+              <Link to="LogIn/"> Login in</Link>
               </div>
+              <div>
+              <Link to="/debits">Debits</Link>
+              </div>
+             
               <Link to="/userProfile">User Profile</Link>
               <AccountBalance accountBalance={this.props.accountBalance}/>
             </div>
