@@ -24,9 +24,8 @@ export default class Home extends Component {
               <Link to="LogIn/"> Login in</Link>
               </div>
               <div>
-              <Link to="/debits">Debits</Link>
+              <Link to="/debits">Debits Page</Link>
               </div>
-             
               <Link to="/userProfile">User Profile</Link>
               <AccountBalance accountBalance={this.props.accountBalance}/>
             </div>

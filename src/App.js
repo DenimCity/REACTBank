@@ -50,8 +50,26 @@ export default class App extends Component {
       console.log('We didnt get the Debits Data')
     })
   }
-  
-  
+
+//this is the component that updates the debits componet and credit components 
+  updatingAccountBalance = () => {
+    const totalDebits = this.state.debits.reduce((totalDebits, debit)=> {
+    return totalDebits + debit.amount
+    },0)
+  }
+
+  addNewDebit = (newDebit) => {
+    const debits = [...this.state.debits]
+  }
+
+ 
+ 
+//compuntWillmount should be placed above the render funciton
+//because the render mounts the first Mounting funciton
+   ///mounts the this variable which is associated  with the data from the api key oonce the page mounts the information 
+   componetWillMount (){
+    this.getDebits()
+  }
 
   mockLogIn = (logInInfo) => {
     //spread operator copies the current user
@@ -59,14 +77,17 @@ export default class App extends Component {
     newUser.userName = logInInfo.userName
     this.setState({currentUser: newUser})
   }
-
   
   
 
   render() {
+  //this is the  variable allows you to change the state of the account balance
+  //teh state of the balance is updated prior to the state being formulate
+  //then rendered back to the user
+    const accountBalance = this.updatingAccountBalance()
 
-    const HomeComponent = () => (
-    <Home accountBalance={this.state.accountBalance}/>) 
+  const HomeComponent = () => (
+  <Home accountBalance={this.state.accountBalance}/>) 
 // we created a variable HomeComponent because we cant directly mount it using 
 //<Home accountBalance={this.state.accountBalance}
 // but we can pass it in as a varibale with handlebars {  }
@@ -84,8 +105,13 @@ const LogInComponent = () => (
 
   const DebitsPageComponent = () => (
     <DebitsPage
-    debits={this.state.debits}/>
+    debits={this.state.debits}
+    addNewDebit={this.addNewDebit}
+    accountBalance={accountBalance} {...this.props} />
   )
+
+
+
 
     return (
       //Router, Switch and Route is apart of a library that you imported using npm i react-router-dom
